@@ -22,12 +22,6 @@ namespace :admin do
     mount PgHero::Engine, at: "pghero"
   end
 
-  resources :invitations, only: %i[index new create destroy] do
-    member do
-      post "resend"
-    end
-  end
-
   resources :organization_memberships, only: %i[update destroy create]
   resources :permissions, only: %i[index]
   resources :reactions, only: %i[update]
@@ -46,6 +40,11 @@ namespace :admin do
 
   namespace :users do
     resources :gdpr_delete_requests, only: %i[index destroy]
+    resources :invitations, only: %i[index new create destroy] do
+      member do
+        post "resend"
+      end
+    end
   end
 
   resources :users, only: %i[index show update destroy] do
