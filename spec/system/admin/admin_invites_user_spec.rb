@@ -10,7 +10,7 @@ RSpec.describe "Admin invites user", type: :system do
   context "when SMTP is not configured" do
     before do
       allow(ForemInstance).to receive(:smtp_enabled?).and_return(false)
-      visit new_admin_invitation_path
+      visit new_admin_users_invitation_path
     end
 
     it "shows a header" do
@@ -46,7 +46,7 @@ RSpec.describe "Admin invites user", type: :system do
   context "when SMTP is configured" do
     before do
       allow(ForemInstance).to receive(:smtp_enabled?).and_return(true)
-      visit new_admin_invitation_path
+      visit new_admin_users_invitation_path
     end
 
     it "shows the input fields" do
