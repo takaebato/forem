@@ -10,8 +10,7 @@ class DisplayAdsFilter
   end
 
   def call
-    # the order is called at the bottom and so we can remove it
-    relation = filter_by_approved_and_published.order(success_rate: :desc)
+    relation = filter_by_approved_and_published
 
     if article_tags.any?
       relation = filter_by_article_tags(relation)
@@ -22,7 +21,6 @@ class DisplayAdsFilter
     end
 
     relation = filter_by_user_sign_in(relation)
-
     relation.order(success_rate: :desc)
 
     if rand(8) == 1
